@@ -36,9 +36,8 @@ $(document).ready(function () {
     let checkYear = 1;
 
     function getNameTamTai(year) {
-        return dataTamTai[(getNameYear(year).split(" ")[1]).toString()];
+        return dataTamTai[(getNameYear(Number(year)).split(" ")[1]).toString()];
     }
-    //  console.log("get name tam tai " + getNameTamTai(1999));
 
     function checkTamTai(year) {
         let nameTamtai = getNameTamTai(year).split("; ");
@@ -74,6 +73,7 @@ $(document).ready(function () {
     function getNameYear(year) {
         return createYear(Number(year));
     }
+
 
     let validate = 0;
 
@@ -111,7 +111,6 @@ $(document).ready(function () {
     }
 
     function findNextYearBuild(year, yearBuildCurrent) {
-        console.log("function findNextYearBuild" + year + " " + yearBuild);
         for (let i = Number(yearBuildCurrent) + 1; i <= 2072; i++) {
             if (checkKimLau(i - year + 1) == "không phạm" && checkHoangOc(i - year + 1) == "không phạm") {
                 return i;
@@ -147,7 +146,7 @@ $(document).ready(function () {
         $(".output-year").html(year);
         $(".output-name-year").html(getNameYear(year));
         $(".plan-year").html(yearBuild);
-        $(".name-tam-tai").html(getNameTamTai(year));
+        $(".nam-tam-tai").html(getNameTamTai(year));
         $(".name-plan-year").html(getNameYear(yearBuild));
         $(".kq-tam-tai").html(checkTamTai(year));
         $(".age-furture").html(age.toString());
@@ -159,7 +158,6 @@ $(document).ready(function () {
             $(".can-build").removeClass("d-none");
         }
         else {
-            console.log("predict year: " + findNextYearBuild(year, yearBuild));
             $(".predict-next-year").html(findNextYearBuild(year, yearBuild));
             $(".support-year").html(findListYearCanBuild(yearBuild));
             $(".can-build").addClass("d-none");
